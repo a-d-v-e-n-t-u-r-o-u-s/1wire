@@ -104,10 +104,9 @@ uint8_t WIRE_read_byte(void)
     return ret;
 }
 
-int8_t WIRE_configure(uint8_t port, uint8_t pin)
+void WIRE_configure(uint8_t port, uint8_t pin)
 {
     GPIO_config_pin(port, pin, GPIO_INPUT_FLOATING);
     data_port = port;
     data_pin = pin;
-    return 0;
 }
