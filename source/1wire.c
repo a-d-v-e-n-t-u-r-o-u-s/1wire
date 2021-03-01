@@ -86,7 +86,6 @@ void WIRE_send_byte(uint8_t byte)
         send_bit(bit);
         byte >>= 1U;
     }
-    _delay_us(100U);
 }
 
 uint8_t WIRE_read_byte(void)
