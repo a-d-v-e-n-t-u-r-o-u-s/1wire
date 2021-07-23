@@ -22,6 +22,7 @@
  */
 
 #include "1wire.h"
+#include "hardware.h"
 #include <stddef.h>
 #include <util/delay.h>
 #include <avr/io.h>
