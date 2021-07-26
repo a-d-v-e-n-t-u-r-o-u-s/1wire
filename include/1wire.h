@@ -37,7 +37,7 @@
 bool WIRE_reset(void);
 uint8_t WIRE_read_byte(void);
 void WIRE_send_byte(uint8_t byte);
-void WIRE_configure(uint8_t port, uint8_t pin);
+void WIRE_configure(void);
 
 /*@}*/
 #endif

@@ -28,23 +28,20 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
-static uint8_t data_port;
-static uint8_t data_pin;
-
 static void send_bit(bool bit)
 {
     cli();
 
-    GPIO_config_pin(data_port, data_pin, GPIO_OUTPUT_PUSH_PULL);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_OUTPUT_PUSH_PULL);
     _delay_us(5);
 
     if(bit)
     {
-        GPIO_config_pin(data_port, data_pin, GPIO_INPUT_FLOATING);
+        GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_INPUT_FLOATING);
     }
 
     _delay_us(80);
-    GPIO_config_pin(data_port, data_pin, GPIO_INPUT_FLOATING);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_INPUT_FLOATING);
     sei();
 }
 
@@ -52,12 +49,12 @@ static bool read_bit(void)
 {
     bool ret = false;
     cli();
-    GPIO_config_pin(data_port, data_pin, GPIO_OUTPUT_PUSH_PULL);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_OUTPUT_PUSH_PULL);
     _delay_us(2);
-    GPIO_config_pin(data_port, data_pin, GPIO_INPUT_FLOATING);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_INPUT_FLOATING);
     _delay_us(15);
 
-    ret = GPIO_read_pin(data_port, data_pin);
+    ret = GPIO_read_pin(GPIO_CHANNEL_1WIRE);
     sei();
     return ret;
 }
@@ -66,13 +63,13 @@ bool WIRE_reset(void)
 {
     bool ret = false;
 
-    GPIO_config_pin(data_port, data_pin, GPIO_OUTPUT_PUSH_PULL);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_OUTPUT_PUSH_PULL);
     _delay_us(500);
 
-    GPIO_config_pin(data_port, data_pin, GPIO_INPUT_FLOATING);
+    GPIO_config_pin(GPIO_CHANNEL_1WIRE, GPIO_INPUT_FLOATING);
     _delay_us(45);
 
-    ret = !GPIO_read_pin(data_port, data_pin);
+    ret = !GPIO_read_pin(GPIO_CHANNEL_1WIRE);
 
     _delay_us(470);
 
@@ -104,9 +101,6 @@ uint8_t WIRE_read_byte(void)
     return ret;
 }
 
-void WIRE_configure(uint8_t port, uint8_t pin)
+void WIRE_configure(void)
 {
-    GPIO_config_pin(port, pin, GPIO_INPUT_FLOATING);
-    data_port = port;
-    data_pin = pin;
 }
