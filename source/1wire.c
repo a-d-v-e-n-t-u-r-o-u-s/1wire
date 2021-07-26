@@ -103,4 +103,5 @@ uint8_t WIRE_read_byte(void)
 
 void WIRE_configure(void)
 {
+    /* is going to be implemented later */
 }
