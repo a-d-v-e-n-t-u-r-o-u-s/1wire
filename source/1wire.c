@@ -78,11 +78,13 @@ bool WIRE_reset(void)
 
 void WIRE_send_byte(uint8_t byte)
 {
+    uint8_t tmp = byte;
+
     for(uint8_t i = 0U; i < 8U; i++)
     {
-        const bool bit = ((byte & 0x01U) == 0x01);
+        const bool bit = ((tmp & 0x01U) == 0x01);
         send_bit(bit);
-        byte >>= 1U;
+        tmp >>= 1U;
     }
 }
 
