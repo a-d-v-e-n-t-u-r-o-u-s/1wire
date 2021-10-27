@@ -32,7 +32,7 @@
 #define MASTER_TX_RESET_PULSE_TIME          (500u)
 
 /*
- * TODO(DB) setting this time to 45us can cause that sensor won't be discovered
+ * \todo (DB) setting this time to 45us can cause that sensor won't be discovered
  * because according to the documentation it has time till 60u, think about setting
  * this time to 60uS
  */
