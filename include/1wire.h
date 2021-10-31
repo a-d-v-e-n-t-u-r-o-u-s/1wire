@@ -34,9 +34,31 @@
 /*@{*/
 #include "gpio.h"
 
+/*!
+ * \brief Generates reset pulse on 1wire bus
+ *
+ * \retval true 1wire device is present on the bus
+ * \retval false no 1wire device on the bus
+ */
 bool WIRE_reset(void);
+
+/*!
+ * \brief Reads byte from the bus
+ *
+ * \returns read byte of data
+ */
 uint8_t WIRE_read_byte(void);
+
+/*!
+ * \brief Writes byte of data onto the bus
+ *
+ * \param byte data to be written
+ */
 void WIRE_send_byte(uint8_t byte);
+
+/*!
+ * \brief Configures 1wire driver
+ */
 void WIRE_configure(void);
 
 /*@}*/

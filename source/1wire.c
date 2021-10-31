@@ -29,6 +29,14 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 
+/*!
+ *
+ * \addtogroup 1wire_timings
+ * \ingroup 1wire
+ * \brief 1-WIRE bus timings
+ */
+
+/*@{*/
 #define MASTER_TX_RESET_PULSE_TIME          (500u)
 
 /*
@@ -43,7 +51,13 @@
 #define MASTER_SLOT_RECOVERY_TIME           (2u)
 #define MASTER_RX_SLOT_INIT_TIME            (2u)
 #define MASTER_RX_WAIT_TO_SAMPLE            (15u)
+/*@}*/
 
+/*!
+ * \brief Writes bit onto the bus
+ *
+ * \param bit bit value
+ */
 static void send_bit(bool bit)
 {
     cli();
@@ -61,6 +75,11 @@ static void send_bit(bool bit)
     sei();
 }
 
+/*!
+ * \brief Reads bit from the bus
+ *
+ * \returns bit read
+ */
 static bool read_bit(void)
 {
     bool ret = false;
